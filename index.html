@@ -45,22 +45,30 @@
 
   <!-- End Nav Region -->
   <!-- Begin Content Region--> 
+  
     <!-- Login Form-->
   <form action="#" method="get">
-    
+
+    <div class="d-grid gap-2 col-6 mx-auto m-50">
     <!-- Username Field-->
-    <span class="d-block p-2 m-2 bg-primary text-white border-bottom">
+    <span class="d-block p-2 m-2 bg-primary text-white border-bottom display-6">
       <label for="username">Username:</label>
       <input type="textbox" id="username" name="username">
     </span>
 
     <!--Password Field-->
-    <span class="d-block p-2 m-2 bg-primary text-white">
-    <label for="password">Password:</label>
-    <input type="textbox" id="password" name="password"><br>
+    <span class="d-block p-2 m-2 bg-primary text-white display-6">
+      <label for="password">Password:</label>
+      <input type="textbox" id="password" name="password"><br>
     </span>
-    <input type="button" id="login-button" name="login=button" value="Login">
-    <input type="button" id="login-button" name="login=button" value="Register">
+    </div>
+    
+  <div class="text-center">
+    <!--Login Button-->
+        <input type="button" id="login-button" name="login=button" class="w-25 form-control d-inline-block" value="Login">
+    <!--Register Button--> 
+        <input type="button" id="login-button" name="login=button" class="w-25 form-control d-inline-block" value="Register">
+  </div>
   </form>
 
   
