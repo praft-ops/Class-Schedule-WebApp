@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Teacher Course View</title>
+    <!-- Bootstrap CSS link -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  
+        </head>
+        <body>
+
+            <div class="container-xl bg-waring" id="teacherHeader">
+                <div class="row align-items-start">
+                    <div class="col-8"> <!-- Collumn One -->
+                        <h3>Teacher: <span id="username">Username</span></h3>
+                    </div>
+                    <div class="col-2"> <!-- Collum Two -->
+                    </div>
+                    <div class="col-2 p-2"> <!-- Collum Three -->
+                        <input type="button" id="profileView" value="profile">
+                        <input type="button" id="logout" value="logout">
+                    </div>
+                </div>
+            `</div>
+                <!-- Course List-->
+            <div class="container-xxl bg-waring" id="courseList">
+                <div class="row g-1">
+                    <div class="col-10">
+                        Course List
+                    </div>
+                    <div class ="col-2">
+                        <input type="button" id="addCourse" value="Add Course">
+                    </div>
+
+                <div class="row">
+                    <div class="col-sm">
+                        <input type="button" name="editButton" id="editButton" value="Edit Course">
+                    </div>
+                    <div class="col-sm">
+                        <label for="courseNumber">Course Number:</label>
+                    </div>
+                    <div class="col-sm">
+                        <input type="text" id="courseNum" name="courseNum" value="Number" readonly>
+                    </div>
+                    <div class="col-sm">
+                        <label for="courseName">Course Name:</label>
+                    </div>
+                    <div class="col-sm">
+                        <input type="text" id="courseName" name="courseName" value="Name" readonly>
+                    </div>
+                    <div class="col-sm">
+                        <label for="teacher">Teacher:</label>
+                    </div>
+                    <div class="col-sm">
+                        <input type="text" id="teacher" name="courseTeacher" value="Teacher" readonly>
+                    </div>
+                </div>
+               <!--End Course List-->
+            </div>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+        </body>
+</html>
