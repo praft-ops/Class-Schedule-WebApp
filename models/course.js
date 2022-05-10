@@ -1,5 +1,12 @@
 // Create a "Course" model from the courseSchema schema
-const db = require(coursedb);
-const Course = mongoose.model("Course", db.courseSchema);
+const mongoose = require("mongoose");
 
-Module.export = Course;
+const Course = mongoose.model("Course",{
+    username: { type: String, required: true },
+    password: { type: String, required: true },
+    courseName: String,
+    courseNumber: Number,
+    Students: [ String ],
+    Teacher: [ String ]
+});
+module.exports = Course;
