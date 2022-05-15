@@ -7,7 +7,7 @@ const studentSchema = new mongoose.Schema({
     password: { type: String, required: true },
     firstName: String,
     lastName: String,
-    teacher: Boolean,
+    teacher: Boolean
 });
 
 const teacherSchema = new mongoose.Schema({
@@ -15,7 +15,7 @@ const teacherSchema = new mongoose.Schema({
     password: { type: String, required: true },
     firstName: String,
     lastName: String,
-    teacher: Boolean,
+    teacher: Boolean
 });
 
 const courseSchema = new mongoose.Schema({
