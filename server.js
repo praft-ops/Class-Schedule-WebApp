@@ -24,7 +24,7 @@ mongoose.connect(`mongodb+srv://${username}:${password}@coursecluster.vrkmr.mong
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error: "));
 db.once("open", function () {
-    console.log("Connected successfully");
+    console.log("Connected successfully to MongoDB database named \"coursecluster\"");
 })
 
 // Set App ejs view engine to render index.ejs to the client
@@ -35,7 +35,7 @@ app.get('/teacher/login', (req ,res) => {
     res.render('teacherlogin.ejs')
 })
 // Request Teacher Register Form
-app.get('/teacher/register', (req, res) => {
+app.get('/teacher/register/view', (req, res) => {
     res.render('teacherregister.ejs')
 })
 
