@@ -64,8 +64,7 @@ app.post("/teacher/register", async (req, res) => {
     });
 });
 
-// Sends a token when given valid username/password
-
+// Validate Student login
 app.post("/student/auth", function(req, res) {
 
     if (!req.body.username || !req.body.password) {
@@ -89,23 +88,20 @@ app.post("/student/auth", function(req, res) {
             }
             else {
                 // Create a jwt token and send it back as a response
-                const token = jwt.encode({ username: user.username}, secret);
-                res.json({ token: token })
+                const token = jwt.encode({ username: student.username}, secret);
+                res.json({ token: token });
                 console.log(`Successfully logged in. Token recieved: ${token}`);
 
                 // For testing payload response
                 const decoded = jwt.decode(token, secret);
                 console.log("Decoded Payload: " + decoded.username)
 
-                // display student profile on login
-                    res.render('studentprofile.ejs')
             }
         }
     })
 })
 
-// Sends a token when given valid username/password
-
+// Validate Teacher login 
 app.post("/teacher/auth", function(req, res) {
 
     if (!req.body.username || !req.body.password) {
@@ -128,7 +124,8 @@ app.post("/teacher/auth", function(req, res) {
                 res.status(401).json({ error: "Bad password"});
             }
             else {
-                // // Create a jwt token and send it back as a response
+                // Create a jwt token and send it back as a response
+                
                 const token = jwt.encode({ username: teacher.username}, secret);
                 res.json({ token: token });
                 console.log(`Successfully logged in. Token recieved: ${token}`);
@@ -136,12 +133,55 @@ app.post("/teacher/auth", function(req, res) {
                 // For testing payload response
                 const decoded = jwt.decode(token, secret);
                 console.log("Decoded Payload: " + decoded.username);
-
-                // Display teacher profile upon login
-                    res.render('teacherprofile.ejs');
-            }
         }
+    }
     })
 })
+
+// Get the status of all students when given a valid token
+app.get("/student/status", function(req, res) {
+
+    // See if the X-Auth header is set
+    if (!req.headers["x-auth"]) {
+        return res.status(401).json({error: "Missing X-Auth header"});
+    }
+
+    // X-Auth should contain the token
+    const token = req.headers["x-auth"];
+    try {
+        const decoded = jwt.decode(token,secret);
+
+        // Send back all username and status fields
+        Student.find({}, "student username status", function(err, students) {
+            res.json(students);
+        })
+    }
+    catch (ex) {
+        res.status(401).json({ error: "Invalid JWT" });
+    }
+})
+
+// Get the status of all teachers when given a valid token
+app.get("/teacher/status", function(req, res) {
+
+    // See if the X-Auth header is set
+    if (!req.headers["x-auth"]) {
+        return res.status(401).json({error: "Missing X-Auth header"});
+    }
+
+    // X-Auth should contain the token
+    const token = req.headers["x-auth"];
+    try {
+        const decoded = jwt.decode(token,secret);
+
+        // Send back all username and status fields
+        Teacher.find({}, "teacher username status", function(err, teachers) {
+            res.json(teachers);
+        })
+    }
+    catch (ex) {
+        res.status(401).json({ error: "Invalid JWT" });
+    }
+});
 
 module.exports = app;
