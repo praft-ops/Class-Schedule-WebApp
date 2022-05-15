@@ -64,5 +64,68 @@ app.post("/teacher/register", async (req, res) => {
     });
 });
 
-module.exports = app;
 // Sends a token when given valid username/password
+
+app.post("student/auth", function(req, res) {
+
+    if (!req.body.username || !req.body.password) {
+        res.status(401).json({error: "Missing username and/or password"});
+        return;
+    }
+
+    // Get a Student from the database
+    Student.findOne({ username: req.body.username }, function(err, student) {
+        if (err) {
+            res.status(400).send(err);
+        }
+        else if (!student) {
+            //Username not in the database
+            res.status(401).json({ error: "Bad username"});
+        }
+        else {
+            // Check if password from database matches given password
+            if (student.password != req.body.password) {
+                res.status(401).json({ error: "Bad password"});
+            }
+            else {
+                // send back a token that contains the users username
+                const token = jwt.encode({ username: user.username}, secret);
+                res.json({ token: token });
+            }
+        }
+    })
+})
+
+// Sends a token when given valid username/password
+
+app.post("teacher/auth", function(req, res) {
+
+    if (!req.body.username || !req.body.password) {
+        res.status(401).json({error: "Missing username and/or password"});
+        return;
+    }
+
+    // Get Teacher from the database
+    Teacher.findOne({ username: req.body.username }, function(err, teacher) {
+        if (err) {
+            res.status(400).send(err);
+        }
+        else if (!teacher) {
+            //Username not in the database
+            res.status(401).json({ error: "Bad username"});
+        }
+        else {
+            // Check if password from database matches given password
+            if (teacher.password != req.body.password) {
+                res.status(401).json({ error: "Bad password"});
+            }
+            else {
+                // send back a token that contains the users username
+                const token = jwt.encode({ username: user.username}, secret);
+                res.json({ token: token });
+            }
+        }
+    })
+})
+
+module.exports = app;
