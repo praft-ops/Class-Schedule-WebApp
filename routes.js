@@ -66,7 +66,7 @@ app.post("/teacher/register", async (req, res) => {
 
 // Sends a token when given valid username/password
 
-app.post("student/auth", function(req, res) {
+app.post("/student/auth", function(req, res) {
 
     if (!req.body.username || !req.body.password) {
         res.status(401).json({error: "Missing username and/or password"});
@@ -88,9 +88,19 @@ app.post("student/auth", function(req, res) {
                 res.status(401).json({ error: "Bad password"});
             }
             else {
-                // send back a token that contains the users username
+                // Create a jwt token and send it back as a response
                 const token = jwt.encode({ username: user.username}, secret);
-                res.json({ token: token });
+                res.json({ token: token })
+                console.log(`Successfully logged in. Token recieved: ${token}`);
+
+                // For testing payload response
+                const decoded = jwt.decode(token, secret);
+                console.log("Decoded Payload: " + decoded.username)
+
+                // display student profile on login
+                aapp.get('/student/profile', (req, res) => {
+                    res.render('studentprofile.ejs')
+                })
             }
         }
     })
@@ -98,7 +108,7 @@ app.post("student/auth", function(req, res) {
 
 // Sends a token when given valid username/password
 
-app.post("teacher/auth", function(req, res) {
+app.post("/teacher/auth", function(req, res) {
 
     if (!req.body.username || !req.body.password) {
         res.status(401).json({error: "Missing username and/or password"});
@@ -120,9 +130,19 @@ app.post("teacher/auth", function(req, res) {
                 res.status(401).json({ error: "Bad password"});
             }
             else {
-                // send back a token that contains the users username
-                const token = jwt.encode({ username: user.username}, secret);
+                // // Create a jwt token and send it back as a response
+                const token = jwt.encode({ username: teacher.username}, secret);
                 res.json({ token: token });
+                console.log(`Successfully logged in. Token recieved: ${token}`);
+
+                // For testing payload response
+                const decoded = jwt.decode(token, secret);
+                console.log("Decoded Payload: " + decoded.username);
+
+                // Display teacher profile upon login
+                app.get('/teacher/profile', (req, res) => {
+                    res.render('teacherprofile.ejs');
+                })
             }
         }
     })
