@@ -5,8 +5,7 @@ const Teacher = mongoose.model("Teacher",{
     password: { type: String, required: true },
     firstName: String,
     lastName: String,
-    teacher: Boolean,
-    courses: [ Number ]
+    teacher: Boolean
 });
 
 module.exports = Teacher;
