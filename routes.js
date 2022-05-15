@@ -98,9 +98,7 @@ app.post("/student/auth", function(req, res) {
                 console.log("Decoded Payload: " + decoded.username)
 
                 // display student profile on login
-                aapp.get('/student/profile', (req, res) => {
                     res.render('studentprofile.ejs')
-                })
             }
         }
     })
@@ -140,9 +138,7 @@ app.post("/teacher/auth", function(req, res) {
                 console.log("Decoded Payload: " + decoded.username);
 
                 // Display teacher profile upon login
-                app.get('/teacher/profile', (req, res) => {
                     res.render('teacherprofile.ejs');
-                })
             }
         }
     })
