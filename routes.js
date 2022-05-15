@@ -20,6 +20,8 @@ app.post("/student/register", async (req, res) => {
     const newStudent = new Student({
         username: req.body.username,
         password: req.body.password,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
         status: req.body.status
     });
 
@@ -46,6 +48,8 @@ app.post("/teacher/register", async (req, res) => {
     const newTeacher = new Teacher({
         username: req.body.username,
         password: req.body.password,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
         status: req.body.status
     });
 
