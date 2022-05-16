@@ -89,7 +89,7 @@ app.post("/student/auth", function(req, res) {
             else {
                 // Create a jwt token and send it back as a response
                 const token = jwt.encode({ username: student.username}, secret);
-                res.redirect(`http://localhost:3000/student/profile${student._id}/${student.firstName}`);
+                res.redirect(`http://localhost:3000/student/profile/${student._id}/${student.firstName}`);
                 console.log(`Successfully logged in. Token recieved: ${token}`);
 
                 // For testing payload response
