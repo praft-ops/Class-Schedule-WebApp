@@ -40,12 +40,12 @@ app.get('/teacher/register/view', (req, res) => {
 })
 
 // Request Teacher Profile Form 
-app.get('/teacher/profile', (req, res) => {
+app.get('/teacher/profile/:_id/:firstName', (req, res) => {
     res.render('teacherprofile.ejs');
 })
 
 // Request Student Profile
-app.get('/student/profile', (req, res) => {
+app.get('/student/profile/:_id/:firstName', (req, res) => {
     res.render('studentprofile.ejs')
 })
 

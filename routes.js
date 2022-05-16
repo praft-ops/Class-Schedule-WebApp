@@ -89,7 +89,7 @@ app.post("/student/auth", function(req, res) {
             else {
                 // Create a jwt token and send it back as a response
                 const token = jwt.encode({ username: student.username}, secret);
-                res.redirect("http://localhost:3000/student/profile");
+                res.redirect(`http://localhost:3000/student/profile${student._id}/${student.firstName}`);
                 console.log(`Successfully logged in. Token recieved: ${token}`);
 
                 // For testing payload response
@@ -125,13 +125,14 @@ app.post("/teacher/auth", function(req, res) {
             }
             else {
                 // Create a jwt token and send it back as a response
-                
                 const token = jwt.encode({ username: teacher.username}, secret);
-                res.redirect("http://localhost:3000/teacher/profile");
-                console.log(`Successfully logged in. Token recieved: ${token}`);
+
+                // Redirect to profile view
+                res.redirect(`http://localhost:3000/teacher/profile/${teacher._id}/${teacher.firstName}`);
 
                 // For testing payload response
                 const decoded = jwt.decode(token, secret);
+                console.log(`Successfully logged in. Token recieved: ${token}`);
                 console.log("Decoded Payload: " + decoded.username);
         }
     }
