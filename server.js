@@ -13,9 +13,10 @@ Router.use(bodyParser.urlencoded( { extended: false} ));
 app.use(express.json());
 
 //Connect to MongoDB Instance
-const username = "groupB";
+const username = "praft";
 const password = "Plokij90"
-mongoose.connect(`mongodb+srv://${username}:${password}@coursecluster.vrkmr.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`,
+const URI = `mongodb+srv://${username}:${password}@classdb.hafcnj9.mongodb.net/?retryWrites=true&w=majority`
+mongoose.connect(`${URI}`,
 {
     useNewUrlParser: true,
     useUnifiedTopology: true

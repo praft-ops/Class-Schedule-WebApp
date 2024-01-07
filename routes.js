@@ -36,7 +36,7 @@ app.post("/student/register", async (req, res) => {
     });
 });
 
-//Add a new teacher to the database
+//Add a new teacher to the database via teacherregister.ejs form post
 app.post("/teacher/register", async (req, res) => {
 
     // Validate Form Fields
@@ -44,7 +44,7 @@ app.post("/teacher/register", async (req, res) => {
         res.status(400).json({ error: "Missing username/Password/FirstName/LastName"});
         return;
     }
-    // Assign request body variables to newTeacher object
+    // If valid, then assign request body variables to newTeacher object to mongodb
     const newTeacher = new Teacher({
         username: req.body.username,
         password: req.body.password,
@@ -60,6 +60,7 @@ app.post("/teacher/register", async (req, res) => {
         }
         else {
             res.sendStatus(201, () => console.log(`${newTeacher}`) );
+            res.render('teacherlogin.ejs');
         }
     });
 });
